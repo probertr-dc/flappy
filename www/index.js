@@ -31,7 +31,7 @@ class PipePair {
         this.hTop = gapTop;
         this.yBottom = gapTop + 300;
         this.hBottom = 720 - gapTop - 230;
-        this.x = 1280;
+        this.x = 720;
         this.w = 140;
     }
     draw() {
@@ -65,7 +65,7 @@ function MainLoop() {
     else if (bird.y - bird.r < 0) {
         bird.y = bird.r;
     }
-    if (frames % 80 == 0 && frames != 0) {
+    if (frames % 60 == 0 && frames != 0) {
         pipes.push(new PipePair(Math.floor(Math.random() * 251) + 100));
     }
     while (pipes[0].x + pipes[0].w <= 0) {
@@ -87,6 +87,10 @@ function Colliding(ax,ay,aw,ah,bx,by,bw,bh) {
 function Flap() {
     jumpCounter = 20;
 }
+function Start() {
+    interval = setInterval(MainLoop, 20);
+    drawArea.canvas.onclick = Flap;
+}
 function GameOver() {
     clearInterval(interval);
     drawArea.clear();
@@ -96,15 +100,16 @@ function GameOver() {
         pipes[i].update();
     }
     drawArea.context.fillStyle = "rgba(143,143,143,0.7)";
-    drawArea.context.fillRect(0, 0, 1280, 720);
+    drawArea.context.fillRect(0, 0, 600, 600);
     drawArea.context.fillStyle = "black";
     drawArea.context.font = "70px Arial";
-    drawArea.context.fillText("Game Over", 500, 380);
+    drawArea.context.fillText("Game Over", 200, 100);
 }
 var drawArea = new DrawArea(1280, 720);
 var bird = new Bird(70, 30, 20);
 var pipes = [new PipePair(200)];
-drawArea.canvas.onclick = Flap;
+
 var jumpCounter = 0;
 var frames = 0;
-var interval = setInterval(MainLoop, 20);
+var interval;
+drawArea.canvas.onclick = Start;
