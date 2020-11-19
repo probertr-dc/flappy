@@ -29,10 +29,10 @@ class PipePair {
     constructor(gapTop) {
         this.yTop = 0;
         this.hTop = gapTop;
-        this.yBottom = gapTop + (300 * yRatio);
-        this.hBottom = (720  * yRatio) - gapTop - (230 * yRatio);
-        this.x = 1280 * xRatio;
-        this.w = 140 * xRatio;
+        this.yBottom = gapTop + (5/12) * document.body.height;
+        this.hBottom = document.body.height - gapTop - ((23 / 72) * document.body.height);
+        this.x = document.body.width;
+        this.w = (7/64) * document.body.width;
     }
     draw() {
         drawArea.context.fillStyle = "#06bd3a";
@@ -59,14 +59,14 @@ function MainLoop() {
         bird.y -= jumpCounter;
         jumpCounter--;
     }
-    if (bird.y - bird.r >= 720 * yRatio) {
+    if (bird.y - bird.r >= document.body.height) {
         GameOver();
     }
     else if (bird.y - bird.r < 0) {
         bird.y = bird.r;
     }
     if (frames % 80 == 0 && frames != 0) {
-        pipes.push(new PipePair(Math.floor(Math.random() * 251 * yRatio) + 100 * yRatio));
+        pipes.push(new PipePair(Math.floor(Math.random() * (251/720) * document.body.height) + (5/36) * document.body.height));
     }
     while (pipes[0].x + pipes[0].w <= 0) {
         pipes.shift();
@@ -100,16 +100,14 @@ function GameOver() {
         pipes[i].update();
     }
     drawArea.context.fillStyle = "rgba(143,143,143,0.7)";
-    drawArea.context.fillRect(0, 0, 1280 * xRatio, 720 * yRatio);
+    drawArea.context.fillRect(0, 0, document.body.width, document.body.height);
     drawArea.context.fillStyle = "black";
     drawArea.context.font = "70px Arial";
-    drawArea.context.fillText("Game Over", 500 * xRatio, 380 * yRatio);
+    drawArea.context.fillText("Game Over", (25/64) * document.body.width, (19/36) * document.body.height);
 }
-var xRatio = document.body.width / 1280;
-var yRatio = document.body.width / 720;
-var drawArea = new DrawArea(1280 * xRatio, 720 * yRatio);
+var drawArea = new DrawArea(document.body.width, document.body.height);
 var bird = new Bird(70, 30, 20);
-var pipes = [new PipePair(200 * yRatio)];
+var pipes = [new PipePair((document.body.height / 3) - (document.body.height / 6))];
 drawArea.canvas.onclick = Start;
 var jumpCounter = 0;
 var frames = 0;
