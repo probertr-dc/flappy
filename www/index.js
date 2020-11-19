@@ -100,17 +100,17 @@ function GameOver() {
         pipes[i].update();
     }
     drawArea.context.fillStyle = "rgba(143,143,143,0.7)";
-    drawArea.context.fillRect(0, 0, 1280, 720);
+    drawArea.context.fillRect(0, 0, 1280 * xRatio, 720 * yRatio);
     drawArea.context.fillStyle = "black";
-    drawArea.context.font = "70px Arial";
-    drawArea.context.fillText("Game Over", 500, 380);
+    drawArea.context.font = "70vw Arial";
+    drawArea.context.fillText("Game Over", 500 * xRatio, 380 * yRatio);
 }
 const width = window.innerWidth || document.documentElement.clientWidth ||
     document.body.clientWidth;
 const height = window.innerHeight || document.documentElement.clientHeight ||
     document.body.clientHeight;
 const xRatio = width / 1280;
-const yRatio = height / 720
+const yRatio = height / 720;
 const magnitude = Math.sqrt((width * width) + (height * height));
 const magRatio = magnitude / 1468.6;
 
