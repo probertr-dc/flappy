@@ -59,14 +59,14 @@ function MainLoop() {
         bird.y -= jumpCounter;
         jumpCounter--;
     }
-    if (bird.y - bird.r >= 720) {
+    if (bird.y - bird.r >= 600) {
         GameOver();
     }
     else if (bird.y - bird.r < 0) {
         bird.y = bird.r;
     }
     if (frames % 60 == 0 && frames != 0) {
-        pipes.push(new PipePair(Math.floor(Math.random() * 251) + 100));
+        pipes.push(new PipePair(Math.floor(Math.random() * 200) + 40));
     }
     while (pipes[0].x + pipes[0].w <= 0) {
         pipes.shift();
@@ -102,10 +102,10 @@ function GameOver() {
     drawArea.context.fillStyle = "rgba(143,143,143,0.7)";
     drawArea.context.fillRect(0, 0, 600, 600);
     drawArea.context.fillStyle = "black";
-    drawArea.context.font = "70px Arial";
-    drawArea.context.fillText("Game Over", 200, 100);
+    drawArea.context.font = "30px Arial";
+    drawArea.context.fillText("Game Over", 100, 200);
 }
-var drawArea = new DrawArea(1280, 720);
+var drawArea = new DrawArea(600, 600);
 var bird = new Bird(70, 30, 20);
 var pipes = [new PipePair(200)];
 
