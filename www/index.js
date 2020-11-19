@@ -105,6 +105,7 @@ function GameOver() {
     drawArea.context.font = "70px Arial";
     drawArea.context.fillText("Game Over", (25/64) * document.body.width, (19/36) * document.body.height);
 }
+console.log(document.body.width);
 var drawArea = new DrawArea(document.body.width, document.body.height);
 var bird = new Bird(70, 30, 20);
 var pipes = [new PipePair((document.body.height / 3) - (document.body.height / 6))];
