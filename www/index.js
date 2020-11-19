@@ -115,7 +115,7 @@ const magnitude = Math.sqrt((width * width) + (height * height));
 const magRatio = magnitude / 1468.6;
 
 var drawArea = new DrawArea(1280 * xRatio, 720 * yRatio);
-var bird = new Bird(70 * xRatio, 30 * yRatio, 50 * magRatio);
+var bird = new Bird(90 * xRatio, 30 * yRatio, 50 * magRatio);
 var pipes = [new PipePair(200 * yRatio)];
 drawArea.canvas.onclick = Start;
 var jumpCounter = 0;
