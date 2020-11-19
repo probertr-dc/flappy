@@ -102,8 +102,8 @@ function GameOver() {
     drawArea.context.fillStyle = "rgba(143,143,143,0.7)";
     drawArea.context.fillRect(0, 0, 1280 * xRatio, 720 * yRatio);
     drawArea.context.fillStyle = "black";
-    drawArea.context.font = "20vw Arial";
-    drawArea.context.fillText("Game Over", 500 * xRatio, 380 * yRatio);
+    drawArea.context.font = "14vw Arial";
+    drawArea.context.fillText("Game Over", 200 * xRatio, 380 * yRatio);
 }
 const width = window.innerWidth || document.documentElement.clientWidth ||
     document.body.clientWidth;
@@ -115,7 +115,7 @@ const magnitude = Math.sqrt((width * width) + (height * height));
 const magRatio = magnitude / 1468.6;
 
 var drawArea = new DrawArea(1280 * xRatio, 720 * yRatio);
-var bird = new Bird(70 * xRatio, 30 * yRatio, 20 * magRatio);
+var bird = new Bird(70 * xRatio, 30 * yRatio, 50 * magRatio);
 var pipes = [new PipePair(200 * yRatio)];
 drawArea.canvas.onclick = Start;
 var jumpCounter = 0;
