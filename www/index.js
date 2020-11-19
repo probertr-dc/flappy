@@ -32,7 +32,7 @@ class PipePair {
         this.yBottom = gapTop + (300 * yRatio);
         this.hBottom = (720 * yRatio) - gapTop - (230 * yRatio);
         this.x = 1280 * xRatio;
-        this.w = 140 * xRatio;
+        this.w = 400 * xRatio;
     }
     draw() {
         drawArea.context.fillStyle = "#06bd3a";
@@ -102,7 +102,7 @@ function GameOver() {
     drawArea.context.fillStyle = "rgba(143,143,143,0.7)";
     drawArea.context.fillRect(0, 0, 1280 * xRatio, 720 * yRatio);
     drawArea.context.fillStyle = "black";
-    drawArea.context.font = "70vw Arial";
+    drawArea.context.font = "20vw Arial";
     drawArea.context.fillText("Game Over", 500 * xRatio, 380 * yRatio);
 }
 const width = window.innerWidth || document.documentElement.clientWidth ||
