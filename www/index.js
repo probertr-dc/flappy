@@ -29,10 +29,10 @@ class PipePair {
     constructor(gapTop) {
         this.yTop = 0;
         this.hTop = gapTop;
-        this.yBottom = gapTop + 300;
-        this.hBottom = 720 - gapTop - 230;
-        this.x = 720;
-        this.w = 140;
+        this.yBottom = gapTop + (300 * yRatio);
+        this.hBottom = (720  * yRatio) - gapTop - (230 * yRatio);
+        this.x = 1280 * xRatio;
+        this.w = 140 * xRatio;
     }
     draw() {
         drawArea.context.fillStyle = "#06bd3a";
@@ -59,21 +59,21 @@ function MainLoop() {
         bird.y -= jumpCounter;
         jumpCounter--;
     }
-    if (bird.y - bird.r >= 600) {
+    if (bird.y - bird.r >= 720 * yRatio) {
         GameOver();
     }
     else if (bird.y - bird.r < 0) {
         bird.y = bird.r;
     }
-    if (frames % 60 == 0 && frames != 0) {
-        pipes.push(new PipePair(Math.floor(Math.random() * 200) + 40));
+    if (frames % 80 == 0 && frames != 0) {
+        pipes.push(new PipePair(Math.floor(Math.random() * 251 * yRatio) + 100 * yRatio));
     }
     while (pipes[0].x + pipes[0].w <= 0) {
         pipes.shift();
     }
     frames++;
 }
-function Colliding(ax,ay,aw,ah,bx,by,bw,bh) {
+function Colliding(ax, ay, aw, ah, bx, by, bw, bh) {
     if (ax < bx + bw &&
         ax + aw > bx &&
         ay < by + bh &&
@@ -100,16 +100,17 @@ function GameOver() {
         pipes[i].update();
     }
     drawArea.context.fillStyle = "rgba(143,143,143,0.7)";
-    drawArea.context.fillRect(0, 0, 600, 600);
+    drawArea.context.fillRect(0, 0, 1280 * xRatio, 720 * yRatio);
     drawArea.context.fillStyle = "black";
-    drawArea.context.font = "30px Arial";
-    drawArea.context.fillText("Game Over", 100, 200);
+    drawArea.context.font = "70px Arial";
+    drawArea.context.fillText("Game Over", 500 * xRatio, 380 * yRatio);
 }
-var drawArea = new DrawArea(600, 600);
+var xRatio = document.body.width / 1280;
+var yRatio = document.body.width / 720;
+var drawArea = new DrawArea(1280 * xRatio, 720 * yRatio);
 var bird = new Bird(70, 30, 20);
-var pipes = [new PipePair(200)];
-
+var pipes = [new PipePair(200 * yRatio)];
+drawArea.canvas.onclick = Start;
 var jumpCounter = 0;
 var frames = 0;
 var interval;
-drawArea.canvas.onclick = Start;
